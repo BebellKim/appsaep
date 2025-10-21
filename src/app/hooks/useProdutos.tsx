@@ -11,7 +11,7 @@ export function useProdutos() {
     const [produtos, setProdutos] = useState<Produto[]>([]);
 
     useEffect(() => {
-        api.get<Produto[]>('/products/').then(response => {
+        api.get<Produto[]>('/produtos/').then(response => {
             setProdutos(response.data);
         });
     }, []);
@@ -27,15 +27,15 @@ export function useProdutos() {
         });
 
         if (result.isConfirmed) {
-            api.delete('/products/${id}').then(() => {
+            api.delete('/produtos/${id}').then(() => {
                 setProdutos(produtosAtuais => produtosAtuais.filter(p => p.id !== id));
                 Swal.fire('Excluído!', 'O produto foi removido.', 'success');
             });
         }
     };
 
-    const handleAdd = () => router.push('/products/cadastro');
-    const handleEdit = (id: number) => router.push('/products/editar/${id}');
+    const handleAdd = () => router.push('/produtos/cadastro');
+    const handleEdit = (id: number) => router.push('/produtos/editar/${id}');
 
     return {
         produtos,
